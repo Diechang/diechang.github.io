@@ -1,54 +1,48 @@
-# Astro Starter Kit: Basics
+# ポートフォリオサイト
 
-```sh
-npm create astro@latest -- --template basics
-```
+Astro と TailwindCSS を使用して構築された、フロントエンドエンジニアのポートフォリオサイトです。
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 実装機能
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+-   **デザインシステム**: TailwindCSS を使用し、カスタムカラーと Inter フォントを用いたモダンなダークテーマのデザインを実装しました。
+-   **コンポーネント**: 各セクションをモジュール化されたコンポーネントとして作成しました：
+    -   `Hero`: グラデーションエフェクトを含むファーストビュー。
+    -   `About`: シンプルなレイアウトの自己紹介。
+    -   `Skills`: 技術スキルのグリッドレイアウト。
+    -   `Works`: プロジェクト履歴のカードレイアウト。
+    -   `DevelopmentStyle`: コミュニケーションと一貫性を強調するセクション。
+    -   `Services`: アイコン付きの提供サービス一覧。
+    -   `Contact`: 連絡先情報とアクションボタン。
+-   **レスポンシブデザイン**: すべてのセクションはモバイルとデスクトップの両方に最適化されています。
+-   **SEO**: 基本的な SEO メタタグが Layout コンポーネントに設定されています。
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## 実行方法
 
-## 🚀 Project Structure
+1.  **開発サーバーの起動**:
+    ```bash
+    npm run dev
+    ```
+    `http://localhost:4321` でサイトにアクセスできます。
 
-Inside of your Astro project, you'll see the following folders and files:
+2.  **本番用ビルド**:
+    ```bash
+    npm run build
+    ```
+    静的ファイルが `dist/` ディレクトリに生成されます。
+
+## プロジェクト構造
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── public/          # 静的アセット
 ├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/  # 各セクションのコンポーネント
+│   ├── layouts/     # 共通レイアウト
+│   └── pages/       # ページ（ルーティング）
+└── docs/            # ドキュメント・原稿
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 検証結果
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+-   **ビルド**: 成功 (`npm run build` 成功)。
+-   **型チェック**: 成功 (`astro check` 成功)。

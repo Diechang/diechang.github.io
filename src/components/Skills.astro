@@ -1,0 +1,64 @@
+---
+const skills = {
+  Frontend: [
+    "HTML / CSS (SCSS)",
+    "JavaScript",
+    "Vue / Nuxt",
+    "React",
+    "jQuery",
+    "Webpack / Vite",
+    "UI/UX Design",
+  ],
+  Backend: ["Ruby on Rails", "PHP (Laravel / CakePHP / CodeIgniter)"],
+  Design: ["Figma", "Adobe XD", "Adobe Photoshop", "Adobe Illustrator"],
+  Tools: [
+    "Git / GitHub / Bitbucket",
+    "Jira",
+    "Discord / Slack / Chatwork / Notion",
+  ],
+};
+---
+
+<section id="skills" class="py-24 bg-bg relative overflow-hidden">
+  <!-- 背景装飾 -->
+  <div
+    class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-4">
+        スキルセット
+      </h2>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        フロントエンドからバックエンドまで、実務ベースで幅広い技術領域をカバーしています。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {
+        Object.entries(skills).map(([category, items]) => (
+          <div class="bg-surface rounded-xl p-6 border border-text-muted/10 hover:border-primary/30 transition-colors group">
+            <h3 class="text-xl font-semibold text-text-main mb-6 flex items-center">
+              <span class="w-2 h-8 bg-primary rounded-full mr-3 group-hover:h-10 transition-all" />
+              {category}
+            </h3>
+            <ul class="space-y-3">
+              {items.map((item) => (
+                <li class="text-text-muted text-sm flex items-center">
+                  <span class="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

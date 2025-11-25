@@ -1,0 +1,40 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-surface border-t border-text-muted/10 py-12 mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold text-text-main mb-4">
+          ポートフォリオサイト
+        </h3>
+        <p class="text-text-muted text-sm">
+          石川県・金沢市を中心に活動するフロントエンドエンジニアのポートフォリオサイトです。
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-text-main mb-4">対応技術</h3>
+        <p class="text-text-muted text-sm leading-relaxed">
+          HTML / CSS / Vue / Nuxt / React / jQuery <br />
+          Ruby on Rails / Laravel / CakePHP
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-text-main mb-4">連絡先</h3>
+        <ul class="space-y-2 text-sm text-text-muted">
+          <li>メール：お問い合わせフォームより</li>
+          <li>その他：Chatwork / Slack 対応可</li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="mt-12 pt-8 border-t border-text-muted/10 text-center text-sm text-text-muted"
+    >
+      <p>&copy; {currentYear} Daisuke. All rights reserved.</p>
+      <p class="mt-2 text-xs opacity-60">
+        掲載している実績の一部は、守秘義務に配慮し概要のみ記載しています。
+      </p>
+    </div>
+  </div>
+</footer>

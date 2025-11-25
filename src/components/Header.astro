@@ -1,0 +1,199 @@
+---
+const navItems = [
+  { name: "自己紹介", href: "#about" },
+  { name: "スキル", href: "#skills" },
+  { name: "制作実績", href: "#works" },
+  { name: "お問い合わせ", href: "#contact" },
+];
+---
+
+<header
+  class="fixed top-0 w-full z-50 bg-bg/80 backdrop-blur-md border-b border-surface"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0">
+        <a
+          href="#"
+          class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent"
+        >
+          Portfolio
+        </a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <nav class="hidden md:flex space-x-8">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class="text-text-muted hover:text-primary transition-colors text-sm font-medium"
+              >
+                {item.name}
+              </a>
+            ))
+          }
+        </nav>
+
+        <!-- Theme Toggle Button -->
+        <button
+          id="theme-toggle"
+          type="button"
+          class="text-text-muted hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded-lg p-1 transition-colors"
+          aria-label="Toggle Dark Mode"
+        >
+          <!-- Sun Icon (for Dark Mode) -->
+          <svg
+            id="theme-toggle-light-icon"
+            class="hidden w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            ></path>
+          </svg>
+          <!-- Moon Icon (for Light Mode) -->
+          <svg
+            id="theme-toggle-dark-icon"
+            class="hidden w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button
+            type="button"
+            id="mobile-menu-btn"
+            class="text-text-muted hover:text-text-main focus:outline-none"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span class="sr-only">メニューを開く</span>
+            <!-- Icon when menu is closed -->
+            <svg
+              class="h-6 w-6 block"
+              id="menu-closed-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <!-- Icon when menu is open -->
+            <svg
+              class="h-6 w-6 hidden"
+              id="menu-open-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div
+        class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-bg border-b border-surface"
+      >
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class="block px-3 py-2 rounded-md text-base font-medium text-text-muted hover:text-primary hover:bg-surface transition-colors"
+            >
+              {item.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const lightIcon = document.getElementById("theme-toggle-light-icon");
+    const darkIcon = document.getElementById("theme-toggle-dark-icon");
+
+    // Mobile Menu Logic
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuClosedIcon = document.getElementById("menu-closed-icon");
+    const menuOpenIcon = document.getElementById("menu-open-icon");
+
+    mobileMenuBtn?.addEventListener("click", () => {
+      const isExpanded = mobileMenuBtn.getAttribute("aria-expanded") === "true";
+      mobileMenuBtn.setAttribute("aria-expanded", (!isExpanded).toString());
+
+      mobileMenu?.classList.toggle("hidden");
+      menuClosedIcon?.classList.toggle("hidden");
+      menuClosedIcon?.classList.toggle("block");
+      menuOpenIcon?.classList.toggle("hidden");
+      menuOpenIcon?.classList.toggle("block");
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileLinks = mobileMenu?.querySelectorAll("a");
+    mobileLinks?.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu?.classList.add("hidden");
+        mobileMenuBtn?.setAttribute("aria-expanded", "false");
+        menuClosedIcon?.classList.remove("hidden");
+        menuClosedIcon?.classList.add("block");
+        menuOpenIcon?.classList.add("hidden");
+        menuOpenIcon?.classList.remove("block");
+      });
+    });
+
+    // Initial icon state
+    if (
+      localStorage.getItem("theme") === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      lightIcon?.classList.remove("hidden");
+    } else {
+      darkIcon?.classList.remove("hidden");
+    }
+
+    themeToggleBtn?.addEventListener("click", () => {
+      // Toggle icons
+      lightIcon?.classList.toggle("hidden");
+      darkIcon?.classList.toggle("hidden");
+
+      // Toggle theme
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  </script>
+</header>

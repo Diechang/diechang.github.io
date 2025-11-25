@@ -1,0 +1,98 @@
+---
+const works = [
+  {
+    category: "Nuxt（フロントエンド開発）",
+    title: "大手電話帳サービスのWebフロント開発",
+    description:
+      "大規模サービスのフロント部分をNuxtで担当。ページ構成とUI挙動を中心に実装。",
+    tags: ["Nuxt", "Vue", "Large Scale"],
+  },
+  {
+    category: "Nuxt（フロントエンド開発）",
+    title: "不動産投資シミュレーションアプリ",
+    description:
+      "NuxtによるWebアプリ化。UI構築、データ入力系の画面、計算処理のフロント側ロジックを担当。",
+    tags: ["Nuxt", "Web App", "Logic"],
+  },
+  {
+    category: "Nuxt（フロントエンド開発）",
+    title: "公園内で利用するクイズアプリ（スマホ向け）",
+    description:
+      "クライアント端末で動作するシンプルなクイズ体験アプリをNuxtで実装。",
+    tags: ["Nuxt", "Mobile", "Quiz"],
+  },
+  {
+    category: "Vue（Webアプリケーション）",
+    title: "放送局向けの楽曲管理アプリ",
+    description:
+      "楽曲の利用状況を記録し、著作権管理団体へ提出するための情報を整備する社内向けアプリ。Vueでフロント一式を開発。",
+    tags: ["Vue", "Internal Tool", "Management"],
+  },
+  {
+    category: "jQuery",
+    title: "既存サービスの改修・機能追加対応全般",
+    description:
+      "UI改善、プラグイン導入、スクリプト調整など、jQueryが前提となる環境での各種対応。",
+    tags: ["jQuery", "Maintenance", "UI Improvement"],
+  },
+  {
+    category: "コーディング（HTML/CSS）",
+    title: "企業サイト・LPの新規構築、改修",
+    description:
+      "デザインデータからの実装、レスポンシブ対応、軽量化やセマンティックなHTML構築に多数対応。",
+    tags: ["HTML", "CSS", "Responsive"],
+  },
+  {
+    category: "個人アフィリエイトサイト（閉鎖済み）",
+    title: "オンラインゲームを題材としたユーザー投稿型レビューサイト",
+    description: "ユーザー投稿型のレビューサイト。",
+    tags: ["CakePHP"],
+  },
+  {
+    category: "個人アフィリエイトサイト（閉鎖済み）",
+    title: "IPO投資を題材としたブログサイト",
+    description: "IPO投資情報を発信するブログメディア。",
+    tags: ["WordPress"],
+  },
+];
+---
+
+<section id="works" class="py-24 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-4">
+        制作実績（実務）
+      </h2>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        これまでの実務経験から一部を抜粋してご紹介します。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        works.map((work) => (
+          <div class="group bg-bg rounded-xl overflow-hidden border border-text-muted/10 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+            <div class="p-8">
+              <div class="text-xs font-medium text-primary mb-2 uppercase tracking-wider">
+                {work.category}
+              </div>
+              <h3 class="text-xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors">
+                {work.title}
+              </h3>
+              <p class="text-text-muted text-sm leading-relaxed mb-6">
+                {work.description}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {work.tags.map((tag) => (
+                  <span class="px-3 py-1 text-xs font-medium bg-surface text-text-muted rounded-full border border-text-muted/10">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
