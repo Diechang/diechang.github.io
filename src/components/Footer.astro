@@ -2,12 +2,12 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-surface border-t border-text-muted/10 py-12 mt-20">
+<footer class="bg-surface border-t border-text-muted/10 py-12 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div>
         <h3 class="text-lg font-semibold text-text-main mb-4">
-          ポートフォリオサイト
+          Daisuke Yokogawa
         </h3>
         <p class="text-text-muted text-sm">
           石川県・金沢市を中心に活動するフロントエンドエンジニアのポートフォリオサイトです。
@@ -17,24 +17,54 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-lg font-semibold text-text-main mb-4">対応技術</h3>
         <p class="text-text-muted text-sm leading-relaxed">
           HTML / CSS / Vue / Nuxt / React / jQuery <br />
-          Ruby on Rails / Laravel / CakePHP
+          Ruby on Rails / Laravel / CakePHP / WordPress
         </p>
       </div>
       <div>
         <h3 class="text-lg font-semibold text-text-main mb-4">連絡先</h3>
         <ul class="space-y-2 text-sm text-text-muted">
-          <li>メール：お問い合わせフォームより</li>
-          <li>その他：Chatwork / Slack 対応可</li>
+          <li>
+            メール：<a
+              href="https://forms.gle/oDzWTt8y9LWQx43R6"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary transition-colors underline"
+              >お問い合わせフォームより</a
+            >
+          </li>
+          <li>その他：Chatwork / Slack / Discord / Zoom 対応可</li>
         </ul>
       </div>
     </div>
-    <div
-      class="mt-12 pt-8 border-t border-text-muted/10 text-center text-sm text-text-muted"
-    >
-      <p>&copy; {currentYear} Daisuke. All rights reserved.</p>
-      <p class="mt-2 text-xs opacity-60">
-        掲載している実績の一部は、守秘義務に配慮し概要のみ記載しています。
-      </p>
+    <div class="mt-12 pt-8 border-t border-text-muted/10">
+      <div
+        class="flex flex-row items-center justify-center gap-4 md:block md:text-center"
+      >
+        <div class="text-sm text-text-muted text-center">
+          <p>&copy; {currentYear} Daisuke. All rights reserved.</p>
+          <p class="mt-2 text-xs opacity-60">
+            掲載している実績の一部は、守秘義務に配慮し概要のみ記載しています。
+          </p>
+        </div>
+        <!-- Mobile Banner -->
+        <a
+          href="https://www.pref.ishikawa.lg.jp/saigai/202401jishin-ouen.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="md:hidden w-[100px] flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+        >
+          <img src="/img/noto_ouen.png" alt="能登半島地震復興応援" />
+        </a>
+      </div>
     </div>
   </div>
+  <!-- Desktop Banner -->
+  <a
+    href="https://www.pref.ishikawa.lg.jp/saigai/202401jishin-ouen.html"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hidden md:block absolute bottom-4 right-4 w-[120px] opacity-80 hover:opacity-100 transition-opacity"
+  >
+    <img src="/img/noto_ouen.png" alt="能登半島地震復興応援" />
+  </a>
 </footer>

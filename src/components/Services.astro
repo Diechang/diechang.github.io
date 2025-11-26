@@ -53,24 +53,26 @@ const services = [
       {
         services.map((service) => (
           <div class="p-6 rounded-xl bg-bg border border-text-muted/10 hover:border-primary/30 transition-colors">
-            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6">
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d={service.icon}
-                />
-              </svg>
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary flex-shrink-0 mr-4">
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d={service.icon}
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-text-main">
+                {service.title}
+              </h3>
             </div>
-            <h3 class="text-xl font-semibold text-text-main mb-3">
-              {service.title}
-            </h3>
             <p class="text-text-muted text-sm leading-relaxed">
               {service.description}
             </p>
