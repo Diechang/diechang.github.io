@@ -1,0 +1,276 @@
+---
+interface WorkItem {
+  title: string;
+  description?: string;
+  tags?: string[];
+}
+
+interface SubCategory {
+  name?: string;
+  items: WorkItem[];
+}
+
+interface Category {
+  name: string;
+  subcategories: SubCategory[];
+}
+
+const worksData: Category[] = [
+  {
+    name: "フロントエンド開発",
+    subcategories: [
+      {
+        name: "Nuxt",
+        items: [
+          {
+            title: "大手電話帳サービスのWebフロント開発",
+            description:
+              "大規模サービスのフロント部分をNuxtで担当。ページ構成とUI挙動を中心に実装。",
+            tags: ["Nuxt", "Vue", "Large Scale"],
+          },
+          {
+            title: "不動産投資シミュレーションアプリ",
+            description:
+              "NuxtによるWebアプリ化。UI構築、データ入力系の画面、計算処理のフロント側ロジックを担当。",
+            tags: ["Nuxt", "Web App", "Logic"],
+          },
+          {
+            title: "公園内で利用するクイズアプリ（スマホ向け）",
+            description:
+              "クライアント端末で動作するシンプルなクイズ体験アプリをNuxtで実装。",
+            tags: ["Nuxt", "Mobile", "Quiz"],
+          },
+        ],
+      },
+      {
+        name: "Vue",
+        items: [
+          {
+            title: "見たままHP構築ツール",
+            description:
+              "ドラッグ＆ドロップで見たままのHPを構築するためのツール。Vueでフロント一式を開発。",
+            tags: ["Vue", "Tool", "Drag & Drop"],
+          },
+          {
+            title: "放送局向けの楽曲管理アプリ",
+            description:
+              "楽曲の利用状況を記録し、著作権管理団体へ提出するための情報を整備する社内向けアプリ。Vueでフロント一式を開発。",
+            tags: ["Vue", "Internal Tool", "Management"],
+          },
+        ],
+      },
+      {
+        name: "jQuery",
+        items: [
+          {
+            title: "既存サービスの改修・機能追加対応全般",
+            description:
+              "UI改善、プラグイン導入、スクリプト調整など、jQueryが前提となる環境での各種対応。",
+            tags: ["jQuery", "Maintenance", "UI Improvement"],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "コーディング（HTML/CSS）",
+    subcategories: [
+      {
+        items: [
+          {
+            title: "企業サイト・LPの新規構築、改修",
+            description:
+              "デザインデータからの実装、レスポンシブ対応、軽量化やセマンティックなHTML構築に多数対応。",
+            tags: ["HTML", "CSS", "Responsive"],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "個人アフィリエイトサイト（閉鎖済み）",
+    subcategories: [
+      {
+        items: [
+          {
+            title: "オンラインゲームを題材としたユーザー投稿型レビューサイト",
+            description:
+              "CakePHPを使用し、デザインからバックエンドまで一貫して開発/運営。",
+            tags: ["CakePHP"],
+          },
+          {
+            title: "IPO投資を題材としたブログサイト",
+            description: "WordPressを使用したブログサイトを構築し、運営。",
+            tags: ["WordPress"],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const frontendData = worksData[0];
+const otherData = worksData.slice(1);
+
+// Helper to format category name with smaller parentheses
+const formatCategoryName = (name: string) => {
+  const parts = name.split("（");
+  if (parts.length > 1) {
+    return {
+      main: parts[0],
+      sub: `（${parts[1]}`,
+    };
+  }
+  return { main: name, sub: "" };
+};
+---
+
+<section id="works" class="py-24 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-4">
+        制作実績
+      </h2>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        これまでの実務経験から一部を抜粋してご紹介します。
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {/* フロントエンド開発 (3カラム) */}
+      <div
+        class="bg-bg rounded-2xl p-8 md:p-12 border border-text-muted/10 shadow-sm relative overflow-hidden"
+      >
+        {/* 背景装飾 */}
+        <div
+          class="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"
+        >
+        </div>
+        <div
+          class="absolute -top-24 -left-24 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none"
+        >
+        </div>
+
+        <h3
+          class="text-2xl font-bold text-text-main mb-8 border-b border-text-muted/10 pb-4 relative z-10"
+        >
+          {
+            (() => {
+              const { main, sub } = formatCategoryName(frontendData.name);
+              return (
+                <>
+                  {main}
+                  {sub && (
+                    <span class="text-lg text-text-muted ml-1">{sub}</span>
+                  )}
+                </>
+              );
+            })()
+          }
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          {
+            frontendData.subcategories.map((subcategory) => (
+              <div>
+                {subcategory.name && (
+                  <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                    <span class="w-1.5 h-6 bg-primary rounded-full mr-3" />
+                    {subcategory.name}
+                  </h4>
+                )}
+                <div class="space-y-6">
+                  {subcategory.items.map((item) => (
+                    <div class="bg-surface rounded-xl p-6 border border-text-muted/10 h-full">
+                      <h5 class="text-lg font-bold text-text-main mb-3">
+                        {item.title}
+                      </h5>
+                      {item.description && (
+                        <p class="text-text-muted text-sm leading-relaxed mb-4">
+                          {item.description}
+                        </p>
+                      )}
+                      {item.tags && (
+                        <div class="flex flex-wrap gap-2">
+                          {item.tags.map((tag) => (
+                            <span class="px-2.5 py-0.5 text-xs font-medium bg-bg text-text-muted rounded-full border border-text-muted/10">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      {/* その他 (2カラム) */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          otherData.map((category, index) => (
+            <div class="bg-bg rounded-2xl p-8 border border-text-muted/10 shadow-sm flex flex-col relative overflow-hidden">
+              {/* 背景装飾 */}
+              {index === 0 ? (
+                <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-accent/10 rounded-full blur-2xl pointer-events-none" />
+              ) : (
+                <div class="absolute -top-16 -right-16 w-48 h-48 bg-primary/10 rounded-full blur-2xl pointer-events-none" />
+              )}
+
+              <h3 class="text-2xl font-bold text-text-main mb-8 border-b border-text-muted/10 pb-4 relative z-10">
+                {(() => {
+                  const { main, sub } = formatCategoryName(category.name);
+                  return (
+                    <>
+                      {main}
+                      {sub && (
+                        <span class="text-lg text-text-muted ml-1">{sub}</span>
+                      )}
+                    </>
+                  );
+                })()}
+              </h3>
+
+              <div class="flex-grow relative z-10">
+                {category.subcategories.map((subcategory) => (
+                  <div class="space-y-6">
+                    {subcategory.name && (
+                      <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                        <span class="w-1.5 h-6 bg-primary rounded-full mr-3" />
+                        {subcategory.name}
+                      </h4>
+                    )}
+                    {subcategory.items.map((item) => (
+                      <div class="bg-surface rounded-xl p-6 border border-text-muted/10">
+                        <h5 class="text-lg font-bold text-text-main mb-3">
+                          {item.title}
+                        </h5>
+                        {item.description && (
+                          <p class="text-text-muted text-sm leading-relaxed mb-4">
+                            {item.description}
+                          </p>
+                        )}
+                        {item.tags && (
+                          <div class="flex flex-wrap gap-2">
+                            {item.tags.map((tag) => (
+                              <span class="px-2.5 py-0.5 text-xs font-medium bg-bg text-text-muted rounded-full border border-text-muted/10">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
