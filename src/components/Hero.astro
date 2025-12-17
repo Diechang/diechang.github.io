@@ -13,7 +13,7 @@
     <!-- Dark Mode Background -->
     <div
       class="absolute inset-0 w-full h-full bg-cover bg-center opacity-0 dark:opacity-50 transition-opacity duration-500 parallax-bg"
-      style="background-image: url('/img/kanazawa_station_night1.jpg');"
+      style="background-image: url('/img/kanazawa_station_cyber1.jpg');"
     >
     </div>
     <!-- Overlay Gradient for better text readability -->
@@ -27,11 +27,18 @@
   <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <!-- Icon -->
     <div class="mb-8 flex justify-center">
-      <img
-        src="/img/icon.png"
-        alt="Daisuke Yokogawa Icon"
-        class="w-32 h-32 rounded-full border-4 border-surface shadow-xl"
-      />
+      <div class="relative w-32 h-32">
+        <img
+          src="/img/icon.png"
+          alt="Daisuke Yokogawa Icon"
+          class="absolute inset-0 w-full h-full rounded-full border-4 border-surface shadow-xl transition-opacity duration-500 opacity-100 dark:opacity-0"
+        />
+        <img
+          src="/img/icon_cyber.png"
+          alt="Daisuke Yokogawa Icon"
+          class="absolute inset-0 w-full h-full rounded-full border-4 border-surface shadow-xl transition-opacity duration-500 opacity-0 dark:opacity-100"
+        />
+      </div>
     </div>
 
     <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-8">
