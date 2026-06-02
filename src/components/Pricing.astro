@@ -1,0 +1,422 @@
+---
+// src/components/Pricing.astro
+// pricing.mdを元にした料金目安セクション
+
+const codingPrices = [
+  {
+    name: "トップページ",
+    desc: "メインビジュアル・複数セクション構成",
+    period: "8 h〜",
+    price: "¥20,000〜",
+  },
+  {
+    name: "下層ページ（汎用）",
+    desc: "テキスト中心・標準レイアウト",
+    period: "2 h〜",
+    price: "¥5,000〜",
+  },
+  {
+    name: "フォームページ",
+    desc: "マークアップ・フロントバリデーションのみ",
+    period: "4 h〜",
+    price: "¥10,000〜",
+  },
+  {
+    name: "LP（縦長）",
+    desc: "セクション構成・縦長レイアウト",
+    period: "10 h〜",
+    price: "¥25,000〜",
+  },
+];
+
+const frontendPrices = [
+  {
+    name: "UIコンポーネント開発",
+    desc: "共通パーツ設計・Storybook対応など",
+    period: "4 h〜",
+    price: "¥16,000〜",
+  },
+  {
+    name: "SPA / SSRページ実装",
+    desc: "Vue / Nuxt・React / Next によるページ単位の実装",
+    period: "8 h〜",
+    price: "¥32,000〜",
+  },
+  {
+    name: "API連携・状態管理",
+    desc: "REST / GraphQL 連携・Pinia / Redux など",
+    period: "4 h〜",
+    price: "¥16,000〜",
+  },
+];
+
+const wordpressPrices = [
+  {
+    name: "オリジナルテーマ構築",
+    desc: "デザインカンプからのフルスクラッチ",
+    price: "¥80,000〜",
+  },
+  {
+    name: "既存テーマ カスタマイズ",
+    desc: "ソース解読・修正・追加実装",
+    price: "¥30,000〜",
+  },
+  {
+    name: "プラグイン対応・保守",
+    desc: "プラグイン選定・設定・軽微な改修",
+    price: "¥15,000〜",
+  },
+];
+
+const codingOptions = [
+  {
+    name: "素材スライス（PSD / AI → Web用書き出し）",
+    price: "+¥5,000〜",
+    unit: "/ 案件",
+  },
+  { name: "レスポンシブ対応", price: "+¥5,000〜", unit: "/ ページ" },
+  {
+    name: "スクロール演出・パララックス",
+    price: "+¥5,000〜",
+    unit: "/ ページ",
+  },
+  {
+    name: "アニメーション実装（その他）",
+    price: "+¥5,000〜",
+    unit: "/ ページ",
+  },
+  { name: "WordPress組み込み", price: "+¥10,000〜", unit: "/ ページ" },
+  {
+    name: "フォーム送信処理（formrun等の連携）",
+    price: "+¥10,000〜",
+    unit: "/ フォーム",
+  },
+];
+
+const commonTerms = [
+  "表示価格はすべて税別です",
+  "修正対応は2回まで無料、以降は ¥2,500 / h にて承ります",
+  "デザイン制作（Figma・XD等）は別途ご相談ください",
+  "納期・支払いタイミングはご相談のうえ決定します",
+];
+---
+
+<section id="pricing" class="py-24 bg-bg relative overflow-hidden">
+  <!-- 背景装飾 -->
+  <div
+    class="absolute top-1/4 left-0 -ml-32 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute bottom-1/4 right-0 -mr-32 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl pointer-events-none"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-4">
+        料金目安
+      </h2>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        ご依頼の際の料金目安です。ご予算や納期に合わせた柔軟なご提案も可能ですので、まずはお気軽にご相談ください。
+      </p>
+    </div>
+
+    <!-- メイングリッド (2カラム構成) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 items-start">
+      <!-- 左カラム: コーディングカード (基本料金 + オプションを内包) -->
+      <div
+        class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
+      >
+        <div>
+          <!-- ヘッダー -->
+          <div
+            class="flex items-center justify-between mb-6 pb-4 border-b border-text-muted/10"
+          >
+            <h3 class="text-xl font-semibold text-text-main flex items-center">
+              <span
+                class="w-1.5 h-6 bg-primary rounded-full mr-3 group-hover:h-8 transition-all"
+              ></span>
+              コーディング
+            </h3>
+            <span
+              class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full"
+            >
+              時間単価 ¥2,500 / h
+            </span>
+          </div>
+          <p class="text-text-muted text-sm mb-6 leading-relaxed">
+            デザインカンプ（Figma / XD / PSD）からのHTML / CSS /
+            JSコーディング。
+          </p>
+
+          <!-- 基本メニュー -->
+          <div class="mb-8">
+            <h4
+              class="font-semibold text-text-main mb-4 tracking-wider flex items-center uppercase"
+            >
+              <span class="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+              基本制作料金
+            </h4>
+            <div class="space-y-4">
+              {
+                codingPrices.map((item) => (
+                  <div class="border-b border-text-muted/5 pb-3 last:border-0 last:pb-0">
+                    <div class="flex justify-between items-start mb-1">
+                      <span class="font-semibold text-text-main">
+                        {item.name}
+                      </span>
+                      <div class="flex items-center space-x-2 text-right">
+                        <span class="text-[10px] bg-bg text-text-muted px-1.5 py-0.5 rounded border border-text-muted/10 font-medium">
+                          {item.period}
+                        </span>
+                        <span class="text-primary font-bold">{item.price}</span>
+                      </div>
+                    </div>
+                    <p class="text-sm text-text-muted leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- オプションメニュー (同一カード内に内包) -->
+          <div class="pt-6 border-t border-text-muted/10">
+            <h4
+              class="font-semibold text-text-main mb-4 tracking-wider flex items-center uppercase"
+            >
+              <span class="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+              オプション
+            </h4>
+            <div class="space-y-3">
+              {
+                codingOptions.map((opt) => (
+                  <div class="flex justify-between items-center border-b border-text-muted/5 pb-2.5 last:border-0 last:pb-0">
+                    <span class="text-text-main flex items-center font-medium">
+                      <span class="w-1 h-1 bg-primary/50 rounded-full mr-2" />
+                      {opt.name}
+                    </span>
+                    <div class="text-right flex-shrink-0 ml-4">
+                      <span class="font-bold text-primary">{opt.price}</span>
+                      <span class="text-sm text-text-muted ml-0.5">
+                        {opt.unit}
+                      </span>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- フッター注記 -->
+        <div class="mt-8 pt-4 border-t border-text-muted/10">
+          <p class="text-sm text-text-muted flex items-start leading-relaxed">
+            <svg
+              class="w-4 h-4 text-primary mr-1.5 flex-shrink-0 mt-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            工数はデザインの複雑さにより変動します。まずはご相談ください。
+          </p>
+        </div>
+      </div>
+
+      <!-- 右カラム: フロントエンド開発カード ＆ WordPress構築カード を縦に並べる -->
+      <div class="flex flex-col gap-8">
+        <!-- フロントエンド開発 -->
+        <div
+          class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
+        >
+          <div>
+            <div
+              class="flex items-center justify-between mb-6 pb-4 border-b border-text-muted/10"
+            >
+              <h3
+                class="text-xl font-semibold text-text-main flex items-center"
+              >
+                <span
+                  class="w-1.5 h-6 bg-primary rounded-full mr-3 group-hover:h-8 transition-all"
+                ></span>
+                フロントエンド開発
+              </h3>
+              <span
+                class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full"
+              >
+                時間単価 ¥4,000 / h
+              </span>
+            </div>
+            <p class="text-text-muted text-sm mb-6 leading-relaxed">
+              Vue / Nuxt・React / Next
+              によるコンポーネント開発・SPA構築・API連携など。
+            </p>
+
+            <div class="space-y-4">
+              {
+                frontendPrices.map((item) => (
+                  <div class="border-b border-text-muted/5 pb-3 last:border-0 last:pb-0">
+                    <div class="flex justify-between items-start mb-1">
+                      <span class="font-semibold text-text-main">
+                        {item.name}
+                      </span>
+                      <div class="flex items-center space-x-2 text-right">
+                        <span class="text-[10px] bg-bg text-text-muted px-1.5 py-0.5 rounded border border-text-muted/10 font-medium">
+                          {item.period}
+                        </span>
+                        <span class="text-primary font-bold">{item.price}</span>
+                      </div>
+                    </div>
+                    <p class="text-sm text-text-muted leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-text-muted/10">
+            <p class="text-sm text-text-muted flex items-start leading-relaxed">
+              <svg
+                class="w-4 h-4 text-primary mr-1.5 flex-shrink-0 mt-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              要件により工数が大きく変わるため、まずはヒアリングからご相談ください。
+            </p>
+          </div>
+        </div>
+
+        <!-- WordPress構築 -->
+        <div
+          class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
+        >
+          <div>
+            <div
+              class="flex items-center justify-between mb-6 pb-4 border-b border-text-muted/10"
+            >
+              <h3
+                class="text-xl font-semibold text-text-main flex items-center"
+              >
+                <span
+                  class="w-1.5 h-6 bg-primary rounded-full mr-3 group-hover:h-8 transition-all"
+                ></span>
+                WordPress構築
+              </h3>
+              <span
+                class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full"
+              >
+                クラシックテーマ対応
+              </span>
+            </div>
+            <p class="text-text-muted text-sm mb-6 leading-relaxed">
+              クラシックテーマ（PHPベース）のみ対応。デザインカンプからのフルスクラッチ、既存テーマのカスタマイズに対応します。
+            </p>
+
+            <div class="space-y-4">
+              {
+                wordpressPrices.map((item) => (
+                  <div class="border-b border-text-muted/5 pb-3 last:border-0 last:pb-0">
+                    <div class="flex justify-between items-start mb-1">
+                      <span class="font-semibold text-text-main">
+                        {item.name}
+                      </span>
+                      <div class="flex items-center space-x-2 text-right">
+                        <span class="text-primary font-bold">{item.price}</span>
+                      </div>
+                    </div>
+                    <p class="text-sm text-text-muted leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-text-muted/10">
+            <p class="text-sm text-text-muted flex items-start leading-relaxed">
+              <svg
+                class="w-4 h-4 text-primary mr-1.5 flex-shrink-0 mt-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              既存ソースの解読・整理が必要なため、規模・状態によって金額が大きく変わります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ブロック3: 共通事項 (1カラム) -->
+    <div
+      class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm relative overflow-hidden hover:border-primary/20 transition-all duration-300"
+    >
+      <h3 class="text-xl font-semibold text-text-main mb-6 flex items-center">
+        <svg
+          class="w-5 h-5 text-primary mr-2.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        共通事項
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        {
+          commonTerms.map((term) => (
+            <div class="flex items-start">
+              <svg
+                class="w-4 h-4 text-primary mr-3 flex-shrink-0 mt-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span class="text-sm text-text-muted leading-relaxed">
+                {term}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
