@@ -1,0 +1,38 @@
+---
+// src/components/PricingItem.astro
+// 料金表の基本制作料金・メニュー項目の共通コンポーネント
+
+interface Props {
+  name: string;
+  desc?: string;
+  price: string;
+  period?: string;
+}
+
+const { name, desc, price, period } = Astro.props;
+---
+
+<div class="border-b border-text-muted/5 pb-3 last:border-0 last:pb-0">
+  <div class="flex justify-between items-start mb-1">
+    <span class="font-semibold text-text-main">
+      {name}
+    </span>
+    <div class="flex items-center space-x-2 text-right flex-shrink-0 ml-4">
+      {
+        period && (
+          <span class="text-[10px] bg-bg text-text-muted px-1.5 py-0.5 rounded border border-text-muted/10 font-medium">
+            {period}
+          </span>
+        )
+      }
+      <span class="text-primary font-bold">{price}</span>
+    </div>
+  </div>
+  {
+    desc && (
+      <p class="text-sm text-text-muted leading-relaxed">
+        {desc}
+      </p>
+    )
+  }
+</div>
