@@ -1,0 +1,55 @@
+---
+// src/components/PricingCommonTerms.astro
+// 料金表の共通事項セクションのコンポーネント
+
+interface Props {
+  terms: string[];
+}
+
+const { terms } = Astro.props;
+---
+
+<div
+  class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm relative overflow-hidden hover:border-primary/20 transition-all duration-300"
+>
+  <h3 class="text-xl font-semibold text-text-main mb-6 flex items-center">
+    <svg
+      class="w-5 h-5 text-primary mr-2.5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      ></path>
+    </svg>
+    共通事項
+  </h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+    {
+      terms.map((term) => (
+        <div class="flex items-start">
+          <svg
+            class="w-4 h-4 text-primary mr-3 flex-shrink-0 mt-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span class="text-sm text-text-muted leading-relaxed">
+            {term}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</div>

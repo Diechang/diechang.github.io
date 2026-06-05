@@ -1,0 +1,73 @@
+---
+// src/components/PricingCard.astro
+// 料金表カードの共通ラッパーコンポーネント
+
+interface Props {
+  title: string;
+  badge?: string;
+  description?: string;
+  note?: string;
+  class?: string;
+}
+
+const { title, badge, description, note, class: className = "" } = Astro.props;
+---
+
+<div
+  class={`bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group ${className}`}
+>
+  <div>
+    <!-- ヘッダー -->
+    <div
+      class="flex items-center justify-between mb-6 pb-4 border-b border-text-muted/10"
+    >
+      <h3 class="text-xl font-semibold text-text-main flex items-center">
+        <span
+          class="w-1.5 h-6 bg-primary rounded-full mr-3 group-hover:h-8 transition-all"
+        ></span>
+        {title}
+      </h3>
+      {
+        badge && (
+          <span class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">
+            {badge}
+          </span>
+        )
+      }
+    </div>
+    {
+      description && (
+        <p class="text-text-muted text-sm mb-6 leading-relaxed">
+          {description}
+        </p>
+      )
+    }
+
+    <!-- コンテンツ表示用スロット -->
+    <slot />
+  </div>
+
+  <!-- フッター注記 -->
+  {
+    note && (
+      <div class="mt-8 pt-4 border-t border-text-muted/10">
+        <p class="text-sm text-text-muted flex items-start leading-relaxed">
+          <svg
+            class="w-4 h-4 text-primary mr-1.5 flex-shrink-0 mt-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          {note}
+        </p>
+      </div>
+    )
+  }
+</div>

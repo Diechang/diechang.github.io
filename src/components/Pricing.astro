@@ -2,6 +2,11 @@
 // src/components/Pricing.astro
 // pricing.mdを元にした料金目安セクション
 
+import PricingCard from "./PricingCard.astro";
+import PricingItem from "./PricingItem.astro";
+import PricingOptionItem from "./PricingOptionItem.astro";
+import PricingCommonTerms from "./PricingCommonTerms.astro";
+
 const codingPrices = [
   {
     name: "トップページ",
@@ -125,298 +130,102 @@ const commonTerms = [
     <!-- メイングリッド (2カラム構成) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 items-start">
       <!-- 左カラム: コーディングカード (基本料金 + オプションを内包) -->
-      <div
-        class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
+      <PricingCard
+        title="コーディング"
+        badge="時間単価 ¥2,500"
+        description="デザインカンプ（Figma / XD / PSD）からのHTML / CSS / JSコーディング。"
+        note="工数はデザインの複雑さにより変動します。まずはご相談ください。"
       >
-        <div>
-          <!-- ヘッダー -->
-          <div
-            class="flex items-center justify-between mb-6 pb-4 border-b border-text-muted/10"
+        <!-- 基本メニュー -->
+        <div class="mb-8">
+          <h4
+            class="font-semibold text-text-main mb-4 tracking-wider flex items-center uppercase"
           >
-            <h3 class="text-xl font-semibold text-text-main flex items-center">
-              <span
-                class="w-1.5 h-6 bg-primary rounded-full mr-3 group-hover:h-8 transition-all"
-              ></span>
-              コーディング
-            </h3>
-            <span
-              class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full"
-            >
-              時間単価 ¥2,500 / h
-            </span>
-          </div>
-          <p class="text-text-muted text-sm mb-6 leading-relaxed">
-            デザインカンプ（Figma / XD / PSD）からのHTML / CSS /
-            JSコーディング。
-          </p>
-
-          <!-- 基本メニュー -->
-          <div class="mb-8">
-            <h4
-              class="font-semibold text-text-main mb-4 tracking-wider flex items-center uppercase"
-            >
-              <span class="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
-              基本制作料金
-            </h4>
-            <div class="space-y-4">
-              {
-                codingPrices.map((item) => (
-                  <div class="border-b border-text-muted/5 pb-3 last:border-0 last:pb-0">
-                    <div class="flex justify-between items-start mb-1">
-                      <span class="font-semibold text-text-main">
-                        {item.name}
-                      </span>
-                      <div class="flex items-center space-x-2 text-right">
-                        <span class="text-[10px] bg-bg text-text-muted px-1.5 py-0.5 rounded border border-text-muted/10 font-medium">
-                          {item.period}
-                        </span>
-                        <span class="text-primary font-bold">{item.price}</span>
-                      </div>
-                    </div>
-                    <p class="text-sm text-text-muted leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-
-          <!-- オプションメニュー (同一カード内に内包) -->
-          <div class="pt-6 border-t border-text-muted/10">
-            <h4
-              class="font-semibold text-text-main mb-4 tracking-wider flex items-center uppercase"
-            >
-              <span class="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
-              オプション
-            </h4>
-            <div class="space-y-3">
-              {
-                codingOptions.map((opt) => (
-                  <div class="flex justify-between items-center border-b border-text-muted/5 pb-2.5 last:border-0 last:pb-0">
-                    <span class="text-text-main flex items-center font-medium">
-                      <span class="w-1 h-1 bg-primary/50 rounded-full mr-2" />
-                      {opt.name}
-                    </span>
-                    <div class="text-right flex-shrink-0 ml-4">
-                      <span class="font-bold text-primary">{opt.price}</span>
-                      <span class="text-sm text-text-muted ml-0.5">
-                        {opt.unit}
-                      </span>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
+            <span class="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+            基本制作料金
+          </h4>
+          <div class="space-y-4">
+            {
+              codingPrices.map((item) => (
+                <PricingItem
+                  name={item.name}
+                  desc={item.desc}
+                  price={item.price}
+                  period={item.period}
+                />
+              ))
+            }
           </div>
         </div>
 
-        <!-- フッター注記 -->
-        <div class="mt-8 pt-4 border-t border-text-muted/10">
-          <p class="text-sm text-text-muted flex items-start leading-relaxed">
-            <svg
-              class="w-4 h-4 text-primary mr-1.5 flex-shrink-0 mt-0.5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            工数はデザインの複雑さにより変動します。まずはご相談ください。
-          </p>
+        <!-- オプションメニュー -->
+        <div class="pt-6 border-t border-text-muted/10">
+          <h4
+            class="font-semibold text-text-main mb-4 tracking-wider flex items-center uppercase"
+          >
+            <span class="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+            オプション
+          </h4>
+          <div class="space-y-3">
+            {
+              codingOptions.map((opt) => (
+                <PricingOptionItem
+                  name={opt.name}
+                  price={opt.price}
+                  unit={opt.unit}
+                />
+              ))
+            }
+          </div>
         </div>
-      </div>
+      </PricingCard>
 
       <!-- 右カラム: フロントエンド開発カード ＆ WordPress構築カード を縦に並べる -->
       <div class="flex flex-col gap-8">
         <!-- フロントエンド開発 -->
-        <div
-          class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
+        <PricingCard
+          title="フロントエンド開発"
+          badge="時間単価 ¥4,000"
+          description="Vue / Nuxt・React / Next によるコンポーネント開発・SPA構築・API連携など。"
+          note="要件により工数が大きく変わるため、まずはヒアリングからご相談ください。"
         >
-          <div>
-            <div
-              class="flex items-center justify-between mb-6 pb-4 border-b border-text-muted/10"
-            >
-              <h3
-                class="text-xl font-semibold text-text-main flex items-center"
-              >
-                <span
-                  class="w-1.5 h-6 bg-primary rounded-full mr-3 group-hover:h-8 transition-all"
-                ></span>
-                フロントエンド開発
-              </h3>
-              <span
-                class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full"
-              >
-                時間単価 ¥4,000 / h
-              </span>
-            </div>
-            <p class="text-text-muted text-sm mb-6 leading-relaxed">
-              Vue / Nuxt・React / Next
-              によるコンポーネント開発・SPA構築・API連携など。
-            </p>
-
-            <div class="space-y-4">
-              {
-                frontendPrices.map((item) => (
-                  <div class="border-b border-text-muted/5 pb-3 last:border-0 last:pb-0">
-                    <div class="flex justify-between items-start mb-1">
-                      <span class="font-semibold text-text-main">
-                        {item.name}
-                      </span>
-                      <div class="flex items-center space-x-2 text-right">
-                        <span class="text-[10px] bg-bg text-text-muted px-1.5 py-0.5 rounded border border-text-muted/10 font-medium">
-                          {item.period}
-                        </span>
-                        <span class="text-primary font-bold">{item.price}</span>
-                      </div>
-                    </div>
-                    <p class="text-sm text-text-muted leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                ))
-              }
-            </div>
+          <div class="space-y-4">
+            {
+              frontendPrices.map((item) => (
+                <PricingItem
+                  name={item.name}
+                  desc={item.desc}
+                  price={item.price}
+                  period={item.period}
+                />
+              ))
+            }
           </div>
-
-          <div class="mt-8 pt-4 border-t border-text-muted/10">
-            <p class="text-sm text-text-muted flex items-start leading-relaxed">
-              <svg
-                class="w-4 h-4 text-primary mr-1.5 flex-shrink-0 mt-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              要件により工数が大きく変わるため、まずはヒアリングからご相談ください。
-            </p>
-          </div>
-        </div>
+        </PricingCard>
 
         <!-- WordPress構築 -->
-        <div
-          class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
+        <PricingCard
+          title="WordPress構築"
+          badge="クラシックテーマ対応"
+          description="クラシックテーマ（PHPベース）のみ対応。デザインカンプからのフルスクラッチ、既存テーマのカスタマイズに対応します。"
+          note="既存ソースの解読・整理が必要なため、規模・状態によって金額が大きく変わります。"
         >
-          <div>
-            <div
-              class="flex items-center justify-between mb-6 pb-4 border-b border-text-muted/10"
-            >
-              <h3
-                class="text-xl font-semibold text-text-main flex items-center"
-              >
-                <span
-                  class="w-1.5 h-6 bg-primary rounded-full mr-3 group-hover:h-8 transition-all"
-                ></span>
-                WordPress構築
-              </h3>
-              <span
-                class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full"
-              >
-                クラシックテーマ対応
-              </span>
-            </div>
-            <p class="text-text-muted text-sm mb-6 leading-relaxed">
-              クラシックテーマ（PHPベース）のみ対応。デザインカンプからのフルスクラッチ、既存テーマのカスタマイズに対応します。
-            </p>
-
-            <div class="space-y-4">
-              {
-                wordpressPrices.map((item) => (
-                  <div class="border-b border-text-muted/5 pb-3 last:border-0 last:pb-0">
-                    <div class="flex justify-between items-start mb-1">
-                      <span class="font-semibold text-text-main">
-                        {item.name}
-                      </span>
-                      <div class="flex items-center space-x-2 text-right">
-                        <span class="text-primary font-bold">{item.price}</span>
-                      </div>
-                    </div>
-                    <p class="text-sm text-text-muted leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                ))
-              }
-            </div>
+          <div class="space-y-4">
+            {
+              wordpressPrices.map((item) => (
+                <PricingItem
+                  name={item.name}
+                  desc={item.desc}
+                  price={item.price}
+                />
+              ))
+            }
           </div>
-
-          <div class="mt-8 pt-4 border-t border-text-muted/10">
-            <p class="text-sm text-text-muted flex items-start leading-relaxed">
-              <svg
-                class="w-4 h-4 text-primary mr-1.5 flex-shrink-0 mt-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              既存ソースの解読・整理が必要なため、規模・状態によって金額が大きく変わります。
-            </p>
-          </div>
-        </div>
+        </PricingCard>
       </div>
     </div>
 
     <!-- ブロック3: 共通事項 (1カラム) -->
-    <div
-      class="bg-surface rounded-2xl p-6 md:p-8 border border-text-muted/10 shadow-sm relative overflow-hidden hover:border-primary/20 transition-all duration-300"
-    >
-      <h3 class="text-xl font-semibold text-text-main mb-6 flex items-center">
-        <svg
-          class="w-5 h-5 text-primary mr-2.5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        共通事項
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        {
-          commonTerms.map((term) => (
-            <div class="flex items-start">
-              <svg
-                class="w-4 h-4 text-primary mr-3 flex-shrink-0 mt-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <span class="text-sm text-text-muted leading-relaxed">
-                {term}
-              </span>
-            </div>
-          ))
-        }
-      </div>
-    </div>
+    <PricingCommonTerms terms={commonTerms} />
   </div>
 </section>

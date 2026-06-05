@@ -1,0 +1,31 @@
+---
+// src/components/PricingOptionItem.astro
+// 料金表のオプション項目の共通コンポーネント
+
+interface Props {
+  name: string;
+  price: string;
+  unit?: string;
+}
+
+const { name, price, unit } = Astro.props;
+---
+
+<div
+  class="flex justify-between items-center border-b border-text-muted/5 pb-2.5 last:border-0 last:pb-0"
+>
+  <span class="text-text-main flex items-center font-medium">
+    <span class="w-1 h-1 bg-primary/50 rounded-full mr-2"></span>
+    {name}
+  </span>
+  <div class="text-right flex-shrink-0 ml-4">
+    <span class="font-bold text-primary">{price}</span>
+    {
+      unit && (
+        <span class="text-sm text-text-muted ml-0.5">
+          {unit}
+        </span>
+      )
+    }
+  </div>
+</div>
